@@ -1,0 +1,33 @@
+@RestController
+@RequestMapping("/contacts")
+public class ContactController {
+
+    @Autowired
+    private ContactService contactService;
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Contact> updateContact(@PathVariable Long id, @RequestBody Contact contactDetails) {
+        Contact updatedContact = contactService.updateContact(id, contactDetails);
+        return ResponseEntity.ok(updatedContact);
+    }
+}
+
+
+@Service
+public class ContactService {
+
+    @Autowired
+    private ContactRepository contactRepository;
+
+    public Contact updateContact(Long id, Contact contactDetails) {
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Contact not found for this id :: " + id));
+
+        contact.setName(contactDetails.getName());
+        contact.setPhoneNumber(contactDetails.getPhoneNumber());
+        contact.setEmail(contactDetails.getEmail());
+        contact.setAddress(contactDetails.getAddress());
+
+        return contactRepository.save(contact);
+    }
+}

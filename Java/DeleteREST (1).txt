@@ -1,0 +1,39 @@
+@RestController
+@RequestMapping("/contacts")
+public class ContactController {
+
+    @Autowired
+    private ContactService contactService;
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+        Optional<Contact> contactOptional = contactService.findContactById(id);
+
+        if (!contactOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        contactService.deleteContactById(id);
+        final String message = String.format("Successfully deleted document with id: %s", id);
+	return ResponseEntity.ok(message);
+    }
+}
+
+
+import java.util.Optional;
+
+@Service
+public class ContactService {
+
+    @Autowired
+    private ContactRepository contactRepository;
+
+    public Optional<Contact> findContactById(Long id) {
+        return contactRepository.findById(id);
+    }
+
+    public void deleteContactById(Long id) {
+        contactRepository.deleteById(id);
+    }
+}
+
