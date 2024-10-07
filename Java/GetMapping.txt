@@ -1,0 +1,38 @@
+import contact.management.demo.Service.ContactService;
+import contact.management.demo.model.Contact;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/contacts")
+public class ContactController {
+    @Autowired
+    private ContactService contactService;
+
+    @GetMapping(value="/all")
+    public List<Contact> getAllContacts() {
+        return contactService.findAllContacts();
+    }
+
+
+
+
+
+import contact.management.demo.Repository.ContactRepository;
+import contact.management.demo.model.Contact;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ContactService {
+
+    private ContactRepository contactRepository;
+
+    public List<Contact> findAllContacts() {
+        return contactRepository.findAll();
+    }
