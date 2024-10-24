@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { EmployeeTableComponent } from './employee-table/employee-table.component';
-import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
-
+import { LoginComponent } from './core/auth/login/login.component';
+import { EmployeeTableComponent } from './employees/employee-table/employee-table.component';
+import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -23,7 +22,7 @@ const routes: Routes = [
     component: EmployeeDetailComponent
   },
   {
-    path: 'employee/update',
+    path: 'employee/update/:id',
     component: EmployeeDetailComponent
   },
   {
