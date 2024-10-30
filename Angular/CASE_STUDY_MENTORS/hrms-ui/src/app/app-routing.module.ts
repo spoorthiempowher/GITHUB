@@ -22,6 +22,14 @@ const routes: Routes = [
     component: EmployeeDetailComponent
   },
   {
+    path: 'employee',
+    component: EmployeeTableComponent
+  },
+  {
+    path: 'employee-details',
+    component: EmployeeDetailComponent
+  },
+  {
     path: 'employee/update/:id',
     component: EmployeeDetailComponent
   },

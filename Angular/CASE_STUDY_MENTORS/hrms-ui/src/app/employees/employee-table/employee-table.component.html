@@ -1,1 +1,35 @@
-<p>employee-table works!</p>
+<button class="add-employee-button" (click)="createEmployee()">
+    Add New Employee
+  </button>
+
+<div class="table-container">
+    <h2>Employee Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Manager</th>
+          <th>Status</th>
+          <th>Change Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.departmentId }}</td>
+          <td>{{ employee.manager }}</td>
+          <td>{{ employee.status }}</td>
+          <td>
+            <button>
+             Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,12 +1,13 @@
 export interface EmployeeInfo {
-    id: number;
+    id: string;
     name: string;
     email: string;
-    departmentId: number;
+    departmentId: string;
     designation: string;
     manager: string;
     joiningYear: number;
     skills: string;
     address: string;
     phoneNumber: number; 
+    status:string;
 }

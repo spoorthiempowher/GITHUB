@@ -1,1 +1,104 @@
-<p>employee-detail works!</p>
+<div class="form-container">
+  <!-- <h2>{{ isEditMode ? 'Update Employee' : 'Create New Employee' }}</h2> -->
+  <h2>Create New Employee</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input id="id" formControlName="id" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" type="text" />
+        <div *ngIf="employeeForm.get('name')?.hasError('required') && employeeForm.get('name')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" />
+      </div> -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" (input)="email?.markAsTouched()" />
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">         
+          <small *ngIf="email?.errors?.['email']">Please enter a valid email address.</small>
+        </div>
+        <div *ngIf="employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="departmentId">Department ID</label>
+        <input id="departmentId" formControlName="departmentId" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="designation">Designation</label>
+        <input id="designation" formControlName="designation" type="text" />
+        <div *ngIf="employeeForm.get('designation')?.hasError('required') && employeeForm.get('designation')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="manager">Manager</label>
+        <input id="manager" formControlName="manager" type="text" />
+        <div *ngIf="employeeForm.get('manager')?.hasError('required') && employeeForm.get('manager')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="yearOfJoining">Year of Joining</label>
+        <input id="yearOfJoining" formControlName="yearOfJoining" type="text" />
+        <div *ngIf="employeeForm.get('yearOfJoining')?.hasError('required') && employeeForm.get('yearOfJoining')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="skills">Skills</label>
+        <input id="skills" formControlName="skills" type="text" />
+        <div *ngIf="employeeForm.get('skills')?.hasError('required') && employeeForm.get('skills')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" formControlName="address" type="text" />
+        <div *ngIf="employeeForm.get('address')?.hasError('required') && employeeForm.get('address')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input id="phoneNumber" formControlName="phoneNumber" type="number" />
+        <div *ngIf="employeeForm.get('phoneNumber')?.hasError('required') && employeeForm.get('phoneNumber')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="employeeForm.get('password')?.hasError('required') && employeeForm.get('password')?.touched" class="error-message">
+          <small>This field is required</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- <button type="submit" [disabled]="employeeForm.invalid">
+      {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+    </button> -->
+
+    <button type="submit">
+      Create Employee
+    </button>
+  </form>
+</div>

@@ -8,6 +8,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { EmployeeTableComponent } from './employees/employee-table/employee-table.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeSearchControlComponent } from './employees/employee-search-control/employee-search-control.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { EmployeeSearchControlComponent } from './employees/employee-search-cont
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
