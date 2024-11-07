@@ -9,5 +9,7 @@ export interface EmployeeInfo {
     skills: string;
     address: string;
     phoneNumber: number; 
-    status:string;
+    status?:string;
+    password?:string;
+    role?:string;
 }

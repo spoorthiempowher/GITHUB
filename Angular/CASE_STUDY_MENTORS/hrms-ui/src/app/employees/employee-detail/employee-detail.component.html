@@ -1,6 +1,6 @@
 <div class="form-container">
-  <!-- <h2>{{ isEditMode ? 'Update Employee' : 'Create New Employee' }}</h2> -->
-  <h2>Create New Employee</h2>
+  <h3 class="italic-text">Welcome, Johny</h3>
+  <h2>{{ isEditMode ? "Update Employee" : "Create New Employee" }}</h2>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="form-grid">
       <div class="form-group">
@@ -11,22 +11,36 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input id="name" formControlName="name" type="text" />
-        <div *ngIf="employeeForm.get('name')?.hasError('required') && employeeForm.get('name')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('name')?.hasError('required') &&
+            employeeForm.get('name')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
-
-      <!-- <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" />
-      </div> -->
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" (input)="email?.markAsTouched()" />
-        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">         
-          <small *ngIf="email?.errors?.['email']">Please enter a valid email address.</small>
+        <input id="email" formControlName="email" type="email" />
+        <div
+          *ngIf="
+            employeeForm.get('email')?.hasError('email') &&
+            (employeeForm.get('email')?.dirty ||
+              employeeForm.get('email')?.touched)
+          "
+          class="error-message"
+        >
+          <small>Please enter a valid email address.</small>
         </div>
-        <div *ngIf="employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('email')?.hasError('required') &&
+            employeeForm.get('email')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
@@ -39,7 +53,13 @@
       <div class="form-group">
         <label for="designation">Designation</label>
         <input id="designation" formControlName="designation" type="text" />
-        <div *ngIf="employeeForm.get('designation')?.hasError('required') && employeeForm.get('designation')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('designation')?.hasError('required') &&
+            employeeForm.get('designation')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
@@ -47,7 +67,13 @@
       <div class="form-group">
         <label for="manager">Manager</label>
         <input id="manager" formControlName="manager" type="text" />
-        <div *ngIf="employeeForm.get('manager')?.hasError('required') && employeeForm.get('manager')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('manager')?.hasError('required') &&
+            employeeForm.get('manager')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
@@ -55,40 +81,133 @@
       <div class="form-group">
         <label for="yearOfJoining">Year of Joining</label>
         <input id="yearOfJoining" formControlName="yearOfJoining" type="text" />
-        <div *ngIf="employeeForm.get('yearOfJoining')?.hasError('required') && employeeForm.get('yearOfJoining')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('yearOfJoining')?.hasError('required') &&
+            employeeForm.get('yearOfJoining')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
+        </div>
+        <div
+          *ngIf="
+            employeeForm.get('yearOfJoining')?.hasError('pattern') &&
+            (employeeForm.get('yearOfJoining')?.dirty ||
+              employeeForm.get('yearOfJoining')?.touched)
+          "
+          class="error-message"
+        >
+          <small>Enter a valid year (4 digits)</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="skills">Skills</label>
-        <input id="skills" formControlName="skills" type="text" />
-        <div *ngIf="employeeForm.get('skills')?.hasError('required') && employeeForm.get('skills')?.touched" class="error-message">
+        <textarea
+          id="skills"
+          formControlName="skills"
+          rows="4"
+          cols="50"
+        ></textarea>
+        <div
+          *ngIf="
+            employeeForm.get('skills')?.hasError('required') &&
+            employeeForm.get('skills')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="address">Address</label>
-        <input id="address" formControlName="address" type="text" />
-        <div *ngIf="employeeForm.get('address')?.hasError('required') && employeeForm.get('address')?.touched" class="error-message">
+        <textarea
+          id="address"
+          formControlName="address"
+          rows="4"
+          cols="50"
+        ></textarea>
+
+        <div
+          *ngIf="
+            employeeForm.get('address')?.hasError('required') &&
+            employeeForm.get('address')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
-        <input id="phoneNumber" formControlName="phoneNumber" type="number" />
-        <div *ngIf="employeeForm.get('phoneNumber')?.hasError('required') && employeeForm.get('phoneNumber')?.touched" class="error-message">
+        <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+        <div
+          *ngIf="
+            employeeForm.get('phoneNumber')?.hasError('required') &&
+            employeeForm.get('phoneNumber')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
+        </div>
+        <div
+          *ngIf="
+            employeeForm.get('phoneNumber')?.hasError('pattern') &&
+            (employeeForm.get('phoneNumber')?.dirty ||
+              employeeForm.get('phoneNumber')?.touched)
+          "
+          class="error-message"
+        >
+          <small>Enter a valid Phone Number</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
         <input id="password" formControlName="password" type="password" />
-        <div *ngIf="employeeForm.get('password')?.hasError('required') && employeeForm.get('password')?.touched" class="error-message">
+        <div
+          *ngIf="
+            employeeForm.get('password')?.hasError('required') &&
+            employeeForm.get('password')?.touched
+          "
+          class="error-message"
+        >
           <small>This field is required</small>
+        </div>
+        <div
+          *ngIf="
+            employeeForm.get('password')?.hasError('minlength') &&
+            employeeForm.get('password')?.touched
+          "
+          class="error-message"
+        >
+          <small>Password must be at least 8 characters long</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Employee Status</label>
+        <select
+          id="status"
+          formControlName="status"
+          class="form-control status"
+        >
+          <option value="" disabled>Select Status</option>
+          <option *ngFor="let status of statusOptions" [value]="status.value">
+            {{ status.label }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            employeeForm.get('status')?.hasError('required') &&
+            employeeForm.get('status')?.touched
+          "
+          class="error-message"
+        >
+          <small>Status is required.</small>
         </div>
       </div>
     </div>
@@ -96,9 +215,11 @@
     <!-- <button type="submit" [disabled]="employeeForm.invalid">
       {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
     </button> -->
-
-    <button type="submit">
-      Create Employee
-    </button>
+    <div class="button-group">
+      <button class="btn-save" type="submit">
+        {{ isEditMode ? "Update Employee" : "Create Employee" }}
+      </button>
+      <button class="btn-back" (click)="back()">Back</button>
+    </div>
   </form>
 </div>
