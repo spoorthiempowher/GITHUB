@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeInfo } from '../types/employee-info';
 import { EmployeeService } from '../services/employee.service';
+import { AuthService } from 'src/app/core/auth/services/auth.service';
+import { User } from 'src/app/core/types/user';
 
 @Component({
   selector: 'app-employee-table',
@@ -12,16 +14,24 @@ export class EmployeeTableComponent {
   employees: EmployeeInfo[] = [];
   employeeSearch: string = '';
   departmentSearch: string = '';
+  currentUser: User | null = null;
 
   constructor(
     private employeeService: EmployeeService,
-    private route: Router
+    private route: Router,
+    private authService:AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadEmployees();
+    this.getUserDetails();
   }
 
+  getUserDetails(): void {
+    this.authService.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
   loadEmployees() {
     this.employeeService.getEmployees().subscribe(
       (data: EmployeeInfo[]) => {

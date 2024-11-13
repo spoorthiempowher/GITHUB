@@ -1,5 +1,6 @@
 <div class="form-container">
-  <h3 class="italic-text">Welcome, Johny</h3>
+  <app-header></app-header>
+  <h3 class="italic-text">Welcome, {{currentUser?.userName}}</h3>
   <h2>{{ isEditMode ? "Update Employee" : "Create New Employee" }}</h2>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="form-grid">
@@ -219,7 +220,8 @@
       <button class="btn-save" type="submit">
         {{ isEditMode ? "Update Employee" : "Create Employee" }}
       </button>
-      <button class="btn-back" (click)="back()">Back</button>
+      <button class="btn-back" (click)="back()" *ngIf="currentUser?.role === 'admin'">Back</button>
+
     </div>
   </form>
 </div>

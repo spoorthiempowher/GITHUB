@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { EmployeeInfo } from '../types/employee-info';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  
   //to remove Dummy data
   private employees: EmployeeInfo[] = [
     {
@@ -67,24 +68,26 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
+  //GET EMPLOYEES
   getEmployees(): Observable<EmployeeInfo[]> {
     // return this.http.get<EmployeeInfo[]>(this.apiUrl);
     return of(this.employees); // Return dummy data as an Observable
   }
 
-  // Create a new employee
+  // CREATE EMPLOYEE
   createEmployee(employee: EmployeeInfo): Observable<EmployeeInfo> {
     console.log(employee, "employees");
 
     return this.http.post<EmployeeInfo>(this.apiUrl, employee);
   }
 
+  //UPDATE EMPLOYEE
   updateEmployee(employee: EmployeeInfo): Observable<EmployeeInfo> {
     console.log(employee, "updated employee");
     return this.http.put<EmployeeInfo>(`${this.apiUrl}/${employee.id}`, employee);
   }
 
-   // Search employees based on criteria
+   // SEARCH EMPLOYEE based on criteria
    searchEmployees(searchCriteria: { employeeName: string, department: string }): Observable<EmployeeInfo[]> {
     let params = new HttpParams();
     
@@ -96,6 +99,21 @@ export class EmployeeService {
     }
 
     return this.http.get<EmployeeInfo[]>(`${this.apiUrl}/search`, { params });
+  }
+
+  // GET EMPLOYEE BY ID
+  getEmployeeById(employeeId: string | null): Observable<EmployeeInfo | null> {
+    const url = `${this.apiUrl}/employees/${employeeId}`; 
+
+    return this.http.get<EmployeeInfo>(url).pipe(
+      map((employee: EmployeeInfo) => {        
+        return employee;
+      }),
+      catchError((error) => {
+        console.error('Error fetching employee data:', error);
+        return new Observable<EmployeeInfo | null>((observer) => observer.next(null));
+      })
+    );
   }
 
 }

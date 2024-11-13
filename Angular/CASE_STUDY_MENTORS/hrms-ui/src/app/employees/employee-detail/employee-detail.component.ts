@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
+import { AuthService } from 'src/app/core/auth/services/auth.service';
+import { User } from 'src/app/core/types/user';
+import { Role } from 'src/app/core/types/role.enum';
 
 @Component({
   selector: 'app-employee-detail',
@@ -10,7 +13,10 @@ import { EmployeeService } from '../services/employee.service';
 })
 export class EmployeeDetailComponent {
   employeeForm: FormGroup;
-  isEditMode: boolean = false;
+  isEditMode = false;
+  currentUser: User | null = null;
+  role=Role;
+
 
   statusOptions = [
     { value: 'active', label: 'Active' },
@@ -21,7 +27,8 @@ export class EmployeeDetailComponent {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private authService: AuthService
   ) {
     this.employeeForm = this.fb.group({
       id: [''],
@@ -43,11 +50,15 @@ export class EmployeeDetailComponent {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      status: ['active'],
+      status: [
+        this.currentUser?.role === this.role.EMPLOYEE ? 'active' : '', // Default value based on role
+      ],
     });
   }
 
   ngOnInit(): void {
+    this.getUserDetails();
+
     const id = this.route.snapshot.paramMap.get('id');
     this.isEditMode = !!id;
 
@@ -56,8 +67,20 @@ export class EmployeeDetailComponent {
     }
   }
 
+  getUserDetails(): void {
+    this.authService.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
+
   loadEmployeeData(id: string | null) {
     // Load employee data based on ID (mock data for example)
+    //this.employeeService.getEmployeeById(id).subscribe({})
+
+    this.employeeService.getEmployeeById(id).subscribe((data)=>{
+      this.employeeForm.patchValue(employeeData);
+    })
+
     const employeeData = {
       id: '123',
       name: 'John Doe',
