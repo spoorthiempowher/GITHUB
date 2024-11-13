@@ -1,1 +1,16 @@
-<p>employee-search-control works!</p>
+<div class="search-container">
+  <input
+    type="text"
+    class="search-input"
+    [(ngModel)]="employeeSearch"
+    placeholder="Search Employee"
+  />
+  <input
+    type="text"
+    class="search-input"
+    [(ngModel)]="departmentSearch"
+    placeholder="Search by Department"
+  />
+
+  <button (click)="onSearch()">Search</button>
+</div>

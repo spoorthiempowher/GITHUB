@@ -90,6 +90,7 @@ export class EmployeeService {
    // SEARCH EMPLOYEE based on criteria
    searchEmployees(searchCriteria: { employeeName: string, department: string }): Observable<EmployeeInfo[]> {
     let params = new HttpParams();
+    console.log("search",searchCriteria);
     
     if (searchCriteria.employeeName) {
       params = params.set('name', searchCriteria.employeeName);

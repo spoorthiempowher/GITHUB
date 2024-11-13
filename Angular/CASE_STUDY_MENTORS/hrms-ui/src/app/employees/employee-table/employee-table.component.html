@@ -1,29 +1,15 @@
 <div class="container">
-  
   <app-header></app-header>
-  
-  <h3 class="italic-text">Welcome, {{currentUser?.userName}}</h3>
 
-  <div class="search-container">
-    <input
-      type="text"
-      class="search-input"
-      [(ngModel)]="employeeSearch"
-      placeholder="Search Employee"
-    />
-    <input
-      type="text"
-      class="search-input"
-      [(ngModel)]="departmentSearch"
-      placeholder="Search by Department"
-    />
+  <h3 class="italic-text">Welcome, {{ currentUser?.userName }}</h3>
 
-    <button (click)="searchEmployees()">Search</button>
+  <app-employee-search-control
+    (searchEvent)="handleSearch($event)"
+  ></app-employee-search-control>
 
-    <button class="add-employee-button" (click)="createEmployee()">
-      Add New Employee
-    </button>
-  </div>
+  <button class="add-employee-button" (click)="createEmployee()">
+    Add New Employee
+  </button>
 
   <div class="table-container">
     <h2>Employee Table</h2>

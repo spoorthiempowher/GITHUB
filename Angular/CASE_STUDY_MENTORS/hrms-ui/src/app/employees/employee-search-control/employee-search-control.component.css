@@ -1,0 +1,16 @@
+
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 30%;
+    /* Adjust width as needed */
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

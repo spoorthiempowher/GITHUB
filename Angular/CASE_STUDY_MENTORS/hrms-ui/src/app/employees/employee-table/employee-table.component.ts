@@ -19,7 +19,7 @@ export class EmployeeTableComponent {
   constructor(
     private employeeService: EmployeeService,
     private route: Router,
-    private authService:AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class EmployeeTableComponent {
       this.currentUser = user;
     });
   }
+
   loadEmployees() {
     this.employeeService.getEmployees().subscribe(
       (data: EmployeeInfo[]) => {
@@ -43,10 +44,13 @@ export class EmployeeTableComponent {
     );
   }
 
-  searchEmployees() {
+  handleSearch(event: {
+    employeeSearch: string;
+    departmentSearch: string;
+  }): void {
     const searchCriteria = {
-      employeeName: this.employeeSearch,
-      department: this.departmentSearch,
+      employeeName: event.employeeSearch,
+      department: event.departmentSearch,
     };
 
     this.employeeService.searchEmployees(searchCriteria).subscribe(
