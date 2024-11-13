@@ -1,5 +1,12 @@
-<div class="container">
-  <app-header></app-header>
+<div class="container">  
+
+  <div class="page-title">
+    <h2>Employees List</h2>
+
+    <button class="add-employee-button" (click)="createEmployee()">
+      Add New Employee
+    </button>
+  </div>
 
   <h3 class="italic-text">Welcome, {{ currentUser?.userName }}</h3>
 
@@ -40,4 +47,5 @@
       </tbody>
     </table>
   </div>
+
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
+import { UserProfile } from 'src/app/core/types/user-profile';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,13 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService,private router:Router) {}
+  userInfo: UserProfile;
+
+  constructor(private authService: AuthService,private router:Router) {
+    this.authService.currentUser$.subscribe((user: UserProfile) => {
+      this.userInfo = user;
+    });
+  }
 
   logout(): void {
     this.authService.logout();

@@ -1,6 +1,6 @@
 .form-container {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -21,7 +21,9 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-
+input:read-only {
+  cursor: not-allowed;
+}
 .form-group {
   display: flex;
   flex-direction: column;

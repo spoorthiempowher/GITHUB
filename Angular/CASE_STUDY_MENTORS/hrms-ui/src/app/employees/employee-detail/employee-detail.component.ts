@@ -5,6 +5,7 @@ import { EmployeeService } from '../services/employee.service';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { User } from 'src/app/core/types/user';
 import { Role } from 'src/app/core/types/role.enum';
+import { UserProfile } from 'src/app/core/types/user-profile';
 
 @Component({
   selector: 'app-employee-detail',
@@ -12,9 +13,12 @@ import { Role } from 'src/app/core/types/role.enum';
   styleUrls: ['./employee-detail.component.css'],
 })
 export class EmployeeDetailComponent {
+
   employeeForm: FormGroup;
+  
   isEditMode = false;
-  currentUser: User | null = null;
+  limitEditAccess: boolean = false;
+  currentUser: UserProfile | null = null;
   role=Role;
 
 
@@ -70,6 +74,9 @@ export class EmployeeDetailComponent {
   getUserDetails(): void {
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
+      if (this.currentUser.role == Role.EMPLOYEE) {
+        this.limitEditAccess = true;
+      }
     });
   }
 

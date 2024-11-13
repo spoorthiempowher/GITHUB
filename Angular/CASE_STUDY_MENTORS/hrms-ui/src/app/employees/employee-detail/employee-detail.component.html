@@ -1,6 +1,4 @@
 <div class="form-container">
-  <app-header></app-header>
-  <h3 class="italic-text">Welcome, {{currentUser?.userName}}</h3>
   <h2>{{ isEditMode ? "Update Employee" : "Create New Employee" }}</h2>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="form-grid">
@@ -53,7 +51,7 @@
 
       <div class="form-group">
         <label for="designation">Designation</label>
-        <input id="designation" formControlName="designation" type="text" />
+        <input id="designation" formControlName="designation" [readonly]="limitEditAccess" type="text" />
         <div
           *ngIf="
             employeeForm.get('designation')?.hasError('required') &&
@@ -67,7 +65,7 @@
 
       <div class="form-group">
         <label for="manager">Manager</label>
-        <input id="manager" formControlName="manager" type="text" />
+        <input id="manager" formControlName="manager" [readonly]="limitEditAccess"  type="text" />
         <div
           *ngIf="
             employeeForm.get('manager')?.hasError('required') &&
@@ -81,7 +79,7 @@
 
       <div class="form-group">
         <label for="yearOfJoining">Year of Joining</label>
-        <input id="yearOfJoining" formControlName="yearOfJoining" type="text" />
+        <input id="yearOfJoining" formControlName="yearOfJoining" [readonly]="limitEditAccess" type="text" />
         <div
           *ngIf="
             employeeForm.get('yearOfJoining')?.hasError('required') &&
@@ -194,6 +192,7 @@
         <select
           id="status"
           formControlName="status"
+          [disabled]="limitEditAccess" 
           class="form-control status"
         >
           <option value="" disabled>Select Status</option>

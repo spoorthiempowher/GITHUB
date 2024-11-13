@@ -1,0 +1,22 @@
+.container {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #99228b;
+    margin: 0;
+    align-items: center;
+}
+.btn {
+    width: 100px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+}
+span {
+    color: white
+}

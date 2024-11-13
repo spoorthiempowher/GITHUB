@@ -4,6 +4,7 @@ import { EmployeeInfo } from '../types/employee-info';
 import { EmployeeService } from '../services/employee.service';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { User } from 'src/app/core/types/user';
+import { UserProfile } from 'src/app/core/types/user-profile';
 
 @Component({
   selector: 'app-employee-table',
@@ -11,10 +12,11 @@ import { User } from 'src/app/core/types/user';
   styleUrls: ['./employee-table.component.css'],
 })
 export class EmployeeTableComponent {
+
   employees: EmployeeInfo[] = [];
   employeeSearch: string = '';
   departmentSearch: string = '';
-  currentUser: User | null = null;
+  currentUser: UserProfile | null = null;
 
   constructor(
     private employeeService: EmployeeService,

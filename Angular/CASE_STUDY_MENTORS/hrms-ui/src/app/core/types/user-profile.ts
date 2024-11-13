@@ -1,8 +1,7 @@
 import { Role } from "./role.enum";
 
-export interface User{
+export interface UserProfile {
     id: string;
     userName: string;
-    password: string;
     role: Role;
 }
