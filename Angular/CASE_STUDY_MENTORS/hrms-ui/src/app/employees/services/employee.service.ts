@@ -9,16 +9,16 @@ import { EmployeeInfo } from '../types/employee-info';
 export class EmployeeService {
   
   //to remove Dummy data
-  private employees: EmployeeInfo[] = [
+  public employees: EmployeeInfo[] = [
     {
       id: '1',
       name: 'John Doe',
       email: 'john.doe@example.com',
       departmentId: 'HR',
       manager: 'Jane Smith',
-      status: 'Active',
-      designation: '',
-      joiningYear: 0,
+      status: true,
+      designation: 'Software Engineer',
+      yearOfJoining: 2015,
       skills: '',
       address: '',
       phoneNumber: 0
@@ -29,9 +29,9 @@ export class EmployeeService {
       email: 'alice.johnson@example.com',
       departmentId: 'Finance',
       manager: 'Mark Brown',
-      status: 'Active',
-      designation: '',
-      joiningYear: 0,
+      status: true,
+      designation: 'HR Manager',
+      yearOfJoining: 2020,
       skills: '',
       address: '',
       phoneNumber: 0
@@ -42,9 +42,9 @@ export class EmployeeService {
       email: 'bob.williams@example.com',
       departmentId: 'IT',
       manager: 'Sara White',
-      status: 'Inactive',
-      designation: '',
-      joiningYear: 0,
+      status: false,
+      designation: 'Administrator',
+      yearOfJoining: 2000,
       skills: '',
       address: '',
       phoneNumber: 0
@@ -55,9 +55,9 @@ export class EmployeeService {
       email: 'emily.davis@example.com',
       departmentId: 'Marketing',
       manager: 'Tom Clark',
-      status: 'Active',
+      status: true,
       designation: '',
-      joiningYear: 0,
+      yearOfJoining: 2010,
       skills: '',
       address: '',
       phoneNumber: 0
@@ -109,10 +109,6 @@ export class EmployeeService {
     return this.http.get<EmployeeInfo>(url).pipe(
       map((employee: EmployeeInfo) => {        
         return employee;
-      }),
-      catchError((error) => {
-        console.error('Error fetching employee data:', error);
-        return new Observable<EmployeeInfo | null>((observer) => observer.next(null));
       })
     );
   }

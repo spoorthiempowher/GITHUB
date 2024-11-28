@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0;
+    font-family: Tahoma, sans-serif;
+    background-color: #F7F7F7;
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #00ABE4;;
+}
+
+button:hover {
+    opacity: .8;
+}
+
+input:read-only {
+    background-color: lightgray;
 }

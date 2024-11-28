@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { User } from 'src/app/core/types/user';
 import { Role } from 'src/app/core/types/role.enum';
 import { UserProfile } from 'src/app/core/types/user-profile';
+import { EmployeeInfo } from '../types/employee-info';
 
 @Component({
   selector: 'app-employee-detail',
@@ -23,8 +24,8 @@ export class EmployeeDetailComponent {
 
 
   statusOptions = [
-    { value: 'active', label: 'Active' },
-    { value: 'retired', label: 'Retired' },
+    { value: true, label: 'Active' },
+    { value: false, label: 'Inactive' },
   ];
 
   constructor(
@@ -54,9 +55,7 @@ export class EmployeeDetailComponent {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      status: [
-        this.currentUser?.role === this.role.EMPLOYEE ? 'active' : '', // Default value based on role
-      ],
+      status: [true],
     });
   }
 
@@ -74,35 +73,34 @@ export class EmployeeDetailComponent {
   getUserDetails(): void {
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
-      if (this.currentUser.role == Role.EMPLOYEE) {
+
+      if (this.currentUser && this.currentUser.role == Role.EMPLOYEE) {
         this.limitEditAccess = true;
+      } else {
+        const currentUserRole = localStorage.getItem('userRole') as Role;
+        if (currentUserRole == Role.EMPLOYEE) {
+          this.limitEditAccess = true;
+        } else {
+          this.limitEditAccess = false;
+        }
       }
     });
   }
 
   loadEmployeeData(id: string | null) {
-    // Load employee data based on ID (mock data for example)
-    //this.employeeService.getEmployeeById(id).subscribe({})
-
-    this.employeeService.getEmployeeById(id).subscribe((data)=>{
-      this.employeeForm.patchValue(employeeData);
-    })
-
-    const employeeData = {
-      id: '123',
-      name: 'John Doe',
-      email: 'john@example.com',
-      departmentId: 'D001',
-      designation: 'Manager',
-      manager: 'Jane Smith',
-      yearOfJoining: '2015',
-      skills: 'Angular, TypeScript, JavaScript',
-      address: '123 Main St, Cityville',
-      phoneNumber: '1234567890',
-      password: 'password123',
-    };
-
-    this.employeeForm.patchValue(employeeData);
+    this.employeeService.getEmployeeById(id).subscribe(
+      (data) => {
+      this.employeeForm.patchValue(data);
+      },
+      (error) => {
+        const matchResult = this.employeeService.employees.find((employee: EmployeeInfo) => 
+          employee.id == id.toString());
+        console.log(id, this.employeeService.employees, matchResult)
+        if (matchResult) {
+          this.employeeForm.patchValue(matchResult);
+        }
+      }
+    );
   }
 
   onSubmit(): void {

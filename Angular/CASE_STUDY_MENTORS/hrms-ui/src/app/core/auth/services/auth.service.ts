@@ -36,11 +36,13 @@ export class AuthService {
       (u: User) => u.userName === username && u.password === password
     );
 
+    if (user) {
     const userProfile = { id: user.id ,userName: user.userName, role: user.role };
-
     this.setUserInfo(userProfile);
     this.currentUserSubject.next(userProfile || null);
-    console.log(userProfile);
+    } else {
+      alert('Invalid Credentials!');
+    }
     return of(user || null);
   }
 
@@ -66,6 +68,15 @@ export class AuthService {
 
   // Logout method to clear the current user data
   logout(): void {
+    localStorage.clear();
     this.currentUserSubject.next(null); // Clear user data on logout
+  }
+
+  getUserInfo(): string {
+    return localStorage.getItem('userInfo');
+  }
+
+  getLoginStatus(): string {
+    return localStorage.getItem('loginSuccess');
   }
 }

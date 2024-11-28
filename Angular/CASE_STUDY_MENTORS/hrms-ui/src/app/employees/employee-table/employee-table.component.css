@@ -1,13 +1,19 @@
 .container {
-  background-color: whitesmoke;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
+.page-title {
+  margin: 30px 0 40px;
+}
+
+.page-table-title {
+  font-size: 18px;
+}
+
 .table-container {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 table {
@@ -22,41 +28,51 @@ td {
 }
 
 th {
-  background-color: #f4f4f4;
-  text-align: left;
+  background-color: #E5EDF1;
+  text-align: center;
+  font-weight: 100;
+  text-transform: uppercase;
+  padding: 15px 15px;
 }
 
 button {
   padding: 5px 10px;
+  background: #00ABE4;
   color: #fff;
-  background-color: #007bff;
   border: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
 
 .add-employee-button {
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #007bff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
-  margin-right: 40px;
-  margin-top: 20px;
-  margin-right: 40px;
-  margin-top: 20px;
 
 }
 
-.add-employee-button:hover {
-  background-color: #0056b3;
+.action-col {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-btn {
+  text-align: center;
+  width: 60px;
+  padding: 5px;
+  background: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.edit-btn:hover {
+  background-color: lightgray;
 }
 
 

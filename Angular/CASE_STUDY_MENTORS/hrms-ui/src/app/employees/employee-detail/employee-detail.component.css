@@ -4,12 +4,16 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  border: none;
+  background: #E9f1fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 h2 {
-  text-align: center;
+  text-align: left;
+  padding: 10px 0 25px;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .italic-text {
@@ -30,7 +34,7 @@ input:read-only {
 }
 
 label {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
@@ -42,15 +46,27 @@ input {
 }
 
 button {
-  width: 100%;
+  width: 180px;
+  text-transform: uppercase;
   padding: 10px;
   margin-top: 20px;
-  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.btn-back {
+  width: 100px;
+    background-color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    border-radius: 3px;
+    height: 40px;
+    color: black;
 }
 
 button:disabled {

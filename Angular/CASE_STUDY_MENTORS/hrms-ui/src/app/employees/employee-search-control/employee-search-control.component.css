@@ -1,8 +1,8 @@
 
 .search-container {
     display: flex;
-    margin-bottom: 20px;
-    margin-top: 30px;
+    padding: 25px 20px;
+    background-color: #EFEFEF;
   }
   
   .search-input {
@@ -11,6 +11,15 @@
     width: 30%;
     /* Adjust width as needed */
     margin: 0 10px;
+    margin-left: 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+  }
+
+  button {
+    border: none;
+    border-radius: 3px;
+    width: 75px;
+    cursor: pointer;
+    text-transform: uppercase;
   }

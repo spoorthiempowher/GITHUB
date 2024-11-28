@@ -5,11 +5,11 @@ export interface EmployeeInfo {
     departmentId: string;
     designation: string;
     manager: string;
-    joiningYear: number;
+    yearOfJoining: number;
     skills: string;
     address: string;
     phoneNumber: number; 
-    status?:string;
+    status?:boolean;
     password?:string;
     role?:string;
 }

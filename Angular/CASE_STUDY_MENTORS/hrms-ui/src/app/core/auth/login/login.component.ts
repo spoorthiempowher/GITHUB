@@ -20,6 +20,10 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  ngOnInit() {
+    localStorage.clear();
+  }
+
   onSubmit(form: NgForm) {
 
     if (form.invalid) {
@@ -32,7 +36,12 @@ export class LoginComponent {
       .subscribe((user: UserProfile) => {
         if (user) {
           this.errorMessage = '';
+          localStorage.setItem('loginSuccess', 'true');
+          localStorage.setItem('userId', user.id.toString());
+          localStorage.setItem('userName', user.userName.toString());
+          localStorage.setItem('userRole', user.role.toString());
           if (user.role === this.role.ADMIN) {
+            console.log(user)
             this.router.navigate(['/employee']);
           } else if (user.role === this.role.EMPLOYEE) {
             console.log(user)

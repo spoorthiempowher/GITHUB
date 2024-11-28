@@ -1,22 +1,17 @@
 <div class="container">  
 
   <div class="page-title">
-    <h2>Employees List</h2>
-
+    <span class="page-table-title">Employees List</span>
     <button class="add-employee-button" (click)="createEmployee()">
-      Add New Employee
+      ADD NEW EMPLOYEE
     </button>
   </div>
-
-  <h3 class="italic-text">Welcome, {{ currentUser?.userName }}</h3>
 
   <app-employee-search-control
     (searchEvent)="handleSearch($event)"
   ></app-employee-search-control>
 
-
   <div class="table-container">
-    <h2>Employee Table</h2>
     <table>
       <thead>
         <tr>
@@ -36,9 +31,9 @@
           <td>{{ employee.email }}</td>
           <td>{{ employee.departmentId }}</td>
           <td>{{ employee.manager }}</td>
-          <td>{{ employee.status }}</td>
-          <td>
-            <button (click)="editEmployee(employee.id)">Edit</button>
+          <td>{{ employee.status ? 'Active' : 'Inactive' }}</td>
+          <td class="action-col">
+            <button class="edit-btn" (click)="editEmployee(employee.id)">Edit</button>
           </td>
         </tr>
       </tbody>
